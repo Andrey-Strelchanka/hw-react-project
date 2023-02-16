@@ -52,19 +52,14 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title,
-        id: todos.length + 1,
         completed: false,
       }),
-    }).then((response) => response.json());
-    setTodos(
-      todos.concat([
-        {
-          title,
-          id: todos.length + 1,
-          completed: false,
-        },
-      ])
-    );
+    })
+      .then((response) => response.json())
+      .then((todo) => {
+        setTodos(todos.concat(todo));
+      });
+    console.log(todos);
   }
 
   return (
